@@ -1,0 +1,60 @@
+﻿
+@model Example.Models.IssuesAdminModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    table, td, th {
+        border: 1px solid green;
+        border-collapse: collapse;
+        width: 30%;
+        padding: 15px;
+    }
+
+    .addbutton {
+        width: 100px;
+    }
+
+    th {
+        border: 1px solid black;
+        background-color: green;
+        color: white;
+    }
+</style>
+
+@using (Html.BeginForm("index", "Home"))
+{
+    var grid = new WebGrid(Model.IssuesCollection, canSort: false);
+
+    <div>
+       @grid.GetHtml(columns:
+      grid.Columns
+      (
+      grid.Column("IssueId", "Id"),
+      grid.Column("Issue", "Issue"),
+      grid.Column("Category", "Category"),
+      grid.Column("", null, format: @<text><button type="button" class="form-control" onclick="editGrid(@item.IssueId)">Edit</button></text>),
+      grid.Column("", null, format: @<text><button type="button" class="form-control" onclick="DeleteItem(@item.IssueId)">Edit</button></text>)
+      ))
+    </div>
+
+    <div class="addbutton">
+        <button type="button" class="form-control" onclick="addItem()">Add Task</button>
+    </div>
+
+    <sript>
+        function editGrid(id) {
+        
+        }
+
+        function deleteItem(id) {
+        
+        }
+
+        function addItem() {
+        
+        }
+    </sript>
+}
