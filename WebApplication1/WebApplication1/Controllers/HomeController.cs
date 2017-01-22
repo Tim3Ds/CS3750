@@ -13,18 +13,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult TaskList()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "To Do Lists";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
