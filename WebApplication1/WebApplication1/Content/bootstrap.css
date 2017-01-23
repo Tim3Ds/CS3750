@@ -41,6 +41,8 @@ video {
   display: inline-block;
 }
 
+
+
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -4944,14 +4946,26 @@ a.list-group-item.active > .badge,
 
 .jumbotron p {
   line-height: 1.4;
+  text-align: center;
 }
 
-.jumbotron svg {
-    --c1: #3c1518;
-    --c2: #680d15;
-    --c3: #a3000d;
-    --c4: #d63542;
-    --c5: #ff4f5d;
+.jumbotron div {
+    display: inline-block;
+}
+
+#jtleft {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    padding: 15px;
+}
+
+#jtright {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    float: right;
+    padding: 60px
 }
 
 .container .jumbotron {
