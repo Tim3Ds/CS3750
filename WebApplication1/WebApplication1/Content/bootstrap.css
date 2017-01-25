@@ -20,7 +20,6 @@
  */
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
-
 article,
 aside,
 details,
@@ -41,6 +40,8 @@ canvas,
 video {
   display: inline-block;
 }
+
+
 
 audio:not([controls]) {
   display: none;
@@ -526,7 +527,7 @@ h3,
 
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 36px;
 }
 
 h5,
@@ -4273,7 +4274,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
+    float: right;
     margin: 0;
   }
   .navbar-nav > li {
@@ -4291,6 +4292,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
+
   }
 }
 
@@ -4944,6 +4946,26 @@ a.list-group-item.active > .badge,
 
 .jumbotron p {
   line-height: 1.4;
+  text-align: center;
+}
+
+.jumbotron div {
+    display: inline-block;
+}
+
+#jtleft {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    padding: 15px;
+}
+
+#jtright {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    float: right;
+    padding: 60px
 }
 
 .container .jumbotron {

@@ -1,0 +1,78 @@
+USE [Project1Todo]
+GO
+
+/****** Object:  Table [dbo].[Category]    Script Date: 1/24/2017 6:53:16 PM ******/
+DROP TABLE [dbo].[Category]
+GO
+
+/****** Object:  Table [dbo].[Category]    Script Date: 1/24/2017 6:53:16 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Category](
+	[category_id] [int] IDENTITY(1,1) NOT NULL,
+	[category] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[category_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+USE [Project1Todo]
+GO
+
+
+/****** Object:  Table [dbo].[Task]    Script Date: 1/24/2017 6:53:37 PM ******/
+DROP TABLE [dbo].[Task]
+GO
+
+/****** Object:  Table [dbo].[Task]    Script Date: 1/24/2017 6:53:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Task](
+	[task_id] [int] NOT NULL,
+	[todolist_id] [int] NULL,
+	[task_name] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+GO
+
+
+USE [Project1Todo]
+GO
+
+/****** Object:  Table [dbo].[ToDoList]    Script Date: 1/24/2017 6:54:14 PM ******/
+DROP TABLE [dbo].[ToDoList]
+GO
+
+/****** Object:  Table [dbo].[ToDoList]    Script Date: 1/24/2017 6:54:14 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ToDoList](
+	[todolist_id] [int] IDENTITY(1,1) NOT NULL,
+	[category] [nvarchar](50) NULL,
+	[list_name] [nvarchar](50) NULL,
+	[task] [nvarchar](50) NULL,
+	[date_added] [nvarchar](50) NULL,
+	[done] [bit] NULL,
+ CONSTRAINT [PK_ToDoList] PRIMARY KEY CLUSTERED 
+(
+	[todolist_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
