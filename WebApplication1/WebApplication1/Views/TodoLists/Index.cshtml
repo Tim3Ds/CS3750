@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Your Lists</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.listName)
+            <h4>List Name</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastChangedDate)
+            <h4>Date</h4>
         </th>
         <th></th>
     </tr>
