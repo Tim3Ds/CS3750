@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bb89acf36c9457196d5ee89aec8f9a5" Name="Diagram1">
+        <EntityTypeShape EntityType="Project1TodoModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project1TodoModel.Item" Width="1.5" PointX="4.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project1TodoModel.TodoList" Width="1.5" PointX="6.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="Project1TodoModel.FK_Item_Category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Project1TodoModel.FK_Item_TodoList_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
