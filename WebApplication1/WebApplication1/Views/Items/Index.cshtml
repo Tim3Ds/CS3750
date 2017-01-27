@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Items</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.taskName)
+            <h4>Item Name</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isDone)
+            <h4>Done?</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastChangedDate)
+            <h4>Date</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.categoryName)
+            <h4>Category</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TodoList.listName)
+            <h4>List Name</h4>
         </th>
         <th></th>
     </tr>
