@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class CategoriesController : Controller
     {
-        private R2Project1TodoEntities db = new R2Project1TodoEntities();
+        private Project1TodoEntities db = new Project1TodoEntities();
 
         // GET: Categories
         public ActionResult Index()

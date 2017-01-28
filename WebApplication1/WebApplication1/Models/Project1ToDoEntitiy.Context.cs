@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class R2Project1TodoEntities : DbContext
+    public partial class Project1TodoEntities : DbContext
     {
-        public R2Project1TodoEntities()
-            : base("name=R2Project1TodoEntities")
+        public Project1TodoEntities()
+            : base("name=Project1TodoEntities")
         {
         }
     

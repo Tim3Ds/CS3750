@@ -129,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="R2Project1TodoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Project1TodoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="TodoLists" EntityType="Self.TodoList" />
@@ -147,7 +147,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Project1TodoModelStoreContainer" CdmEntityContainer="R2Project1TodoEntities">
+        <EntityContainerMapping StorageEntityContainer="Project1TodoModelStoreContainer" CdmEntityContainer="Project1TodoEntities">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="Project1TodoModel.Category">
               <MappingFragment StoreEntitySet="Category">

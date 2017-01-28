@@ -156,28 +156,28 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>Project1TodoEntity.tt</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Item.cs">
-      <DependentUpon>Project1TodoEntity.tt</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Project1TodoEntity.Context.cs">
+    <Compile Include="Models\Project1ToDoEntitiy.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Project1TodoEntity.Context.tt</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Project1TodoEntity.cs">
+    <Compile Include="Models\Project1ToDoEntitiy.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Project1TodoEntity.tt</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Project1TodoEntity.Designer.cs">
+    <Compile Include="Models\Project1ToDoEntitiy.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Project1TodoEntity.edmx</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TodoList.cs">
-      <DependentUpon>Project1TodoEntity.tt</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,27 +188,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Project1TodoEntity.Context.tt">
+    <Content Include="Models\Project1ToDoEntitiy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Project1TodoEntity.Context.cs</LastGenOutput>
-      <DependentUpon>Project1TodoEntity.edmx</DependentUpon>
+      <DependentUpon>Project1ToDoEntitiy.edmx</DependentUpon>
+      <LastGenOutput>Project1ToDoEntitiy.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Project1TodoEntity.tt">
+    <Content Include="Models\Project1ToDoEntitiy.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Project1TodoEntity.edmx</DependentUpon>
-      <LastGenOutput>Project1TodoEntity.cs</LastGenOutput>
+      <DependentUpon>Project1ToDoEntitiy.edmx</DependentUpon>
+      <LastGenOutput>Project1ToDoEntitiy.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Project1TodoEntity.edmx">
+    <EntityDeploy Include="Models\Project1ToDoEntitiy.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Project1TodoEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>Project1ToDoEntitiy.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Project1TodoEntity.edmx.diagram">
-      <DependentUpon>Project1TodoEntity.edmx</DependentUpon>
+    <Content Include="Models\Project1ToDoEntitiy.edmx.diagram">
+      <DependentUpon>Project1ToDoEntitiy.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -222,7 +222,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
