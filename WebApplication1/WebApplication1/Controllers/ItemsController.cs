@@ -51,18 +51,21 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "item_id,list_id,category_id,taskName,isDone,lastChangedDate")] Item item)
         {
-            if (ModelState.IsValid)
+            using (var db = new Project1TodoEntities())
             {
-                db.Items.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    item.lastChangedDate = DateTime.Now;
+                    db.Items.Add(item);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
+                ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
+                return View(item);
             }
-
-            ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
-            ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
-            return View(item);
         }
-
         // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -85,17 +88,20 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "item_id,list_id,category_id,taskName,isDone,lastChangedDate")] Item item)
+        public ActionResult Edit(Item item)
         {
-            if (ModelState.IsValid)
+            using (var db = new Project1TodoEntities())
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
+                ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
+                return View(item);
             }
-            ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
-            ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
-            return View(item);
         }
 
         // GET: Items/Delete/5
