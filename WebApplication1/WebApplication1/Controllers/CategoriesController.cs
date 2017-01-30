@@ -48,14 +48,17 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "category_id,categoryName,lastChangedDate")] Category category)
         {
-            if (ModelState.IsValid)
+            using (var db = new Project1TodoEntities())
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    category.lastChangedDate = DateTime.Now;
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(category);
             }
-
-            return View(category);
         }
 
         // GET: Categories/Edit/5
