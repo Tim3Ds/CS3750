@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>All Items</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,46 +12,47 @@
 <table class="table">
     <tr>
         <th>
-            <h4>Item Name</h4>
+            @Html.DisplayNameFor(model => model.taskName)
         </th>
         <th>
-            <h4>Done?</h4>
+            @Html.DisplayNameFor(model => model.isDone)
         </th>
         <th>
-            <h4>Date</h4>
+            @Html.DisplayNameFor(model => model.lastChangedDate)
         </th>
         <th>
-            <h4>Category</h4>
+            @Html.DisplayNameFor(model => model.Category.categoryName)
         </th>
         <th>
-            <h4>List Name</h4>
+            @Html.DisplayNameFor(model => model.TodoList.listName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.taskName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastChangedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.categoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TodoList.listName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.taskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isDone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastChangedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.categoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TodoList.listName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.item_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.item_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.item_id })
+            </td>
+        </tr>
+    }
 
 </table>
