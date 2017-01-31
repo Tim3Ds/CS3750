@@ -28,7 +28,13 @@ namespace WebApplication1
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/jquery-ui.css",
+                      "~/Content/jquery-ui.min.css",
+                      "~/Content/jquery-ui.structure.css",
+                      "~/Content/jquery-ui.structure.min.css",
+                      "~/Content/jquery-ui.theme",
+                      "~/Content/jquery-ui.theme.min.css"));
         }
     }
 }
