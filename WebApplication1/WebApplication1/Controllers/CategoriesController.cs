@@ -112,9 +112,33 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            List<int> catId = new List<int>();
+            List<Item> items = new List<Item>();
+            using (var db = new Project1TodoEntities())
+            {
+                catId = (from r in db.Items
+                         where r.category_id == id
+                         select r.category_id).ToList<int>();
+
+                if(catId.Count == 0)
+                {
+                    Category category = db.Categories.Find(id);
+                    db.Categories.Remove(category);
+                }
+                else
+                {
+                    items = (from r in db.Items
+                             where r.category_id == id
+                             select r).ToList<Item>();
+
+                   foreach(var e in items)
+                    {
+                        db.Items.Remove(e);
+                    }
+                }
+               
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

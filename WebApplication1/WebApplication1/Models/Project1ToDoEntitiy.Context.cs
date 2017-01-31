@@ -10,9 +10,10 @@
 namespace WebApplication1.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Project1TodoEntities : DbContext
     {
         public Project1TodoEntities()
@@ -27,6 +28,8 @@ namespace WebApplication1.Models
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+
+        [Display(Name = "To Do List")]
         public virtual DbSet<TodoList> TodoLists { get; set; }
     }
 }

@@ -94,6 +94,7 @@ namespace WebApplication1.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    item.lastChangedDate = DateTime.Now;
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
