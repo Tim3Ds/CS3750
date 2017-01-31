@@ -46,12 +46,16 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "list_id,listName,lastChangedDate")] TodoList todoList)
+        public ActionResult Create(TodoList todoList)
         {
             if (ModelState.IsValid)
             {
-                db.TodoLists.Add(todoList);
-                db.SaveChanges();
+                using (var db = new Project1TodoEntities())
+                {
+                    todoList.lastChangedDate = DateTime.Now;
+                    db.TodoLists.Add(todoList);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -65,12 +69,16 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TodoList todoList = db.TodoLists.Find(id);
-            if (todoList == null)
+            using (var db = new Project1TodoEntities())
             {
-                return HttpNotFound();
+                TodoList todoList = db.TodoLists.Find(id);
+
+                if (todoList == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(todoList);
             }
-            return View(todoList);
         }
 
         // POST: TodoLists/Edit/5
@@ -80,13 +88,17 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "list_id,listName,lastChangedDate")] TodoList todoList)
         {
-            if (ModelState.IsValid)
+            using (var db = new Project1TodoEntities())
             {
-                db.Entry(todoList).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    todoList.lastChangedDate = DateTime.Now;
+                    db.Entry(todoList).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(todoList);
             }
-            return View(todoList);
         }
 
         // GET: TodoLists/Delete/5
@@ -96,12 +108,15 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TodoList todoList = db.TodoLists.Find(id);
-            if (todoList == null)
+            using (var db = new Project1TodoEntities())
             {
-                return HttpNotFound();
+                TodoList todoList = db.TodoLists.Find(id);
+                if (todoList == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(todoList);
             }
-            return View(todoList);
         }
 
         // POST: TodoLists/Delete/5
@@ -109,10 +124,34 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TodoList todoList = db.TodoLists.Find(id);
-            db.TodoLists.Remove(todoList);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            List<Item> itemlist = new List<Item>();
+            List<int> catIds = new List<int>();
+            using (var db = new Project1TodoEntities())
+            {
+                //catIds = (from s in db.Items
+                //          where s.list_id == id
+                //          select s.category_id).ToList();
+
+                //foreach(int e in catIds)
+                //{
+                //    Category element = (from r in db.Categories
+                //                        select r).SingleOrDefault();
+                //    db.Categories.Remove(element);
+                //}
+
+                itemlist = (from r in db.Items
+                            where r.list_id == id
+                            select r).ToList();
+                foreach (var e in itemlist)
+                {
+                    db.Items.Remove(e);
+                }
+
+                TodoList todoList = db.TodoLists.Find(id);
+                db.TodoLists.Remove(todoList);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -125,3 +164,4 @@ namespace WebApplication1.Controllers
         }
     }
 }
+
