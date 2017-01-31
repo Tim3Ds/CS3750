@@ -15,10 +15,13 @@ namespace WebApplication1.Models
 
     public partial class Item
     {
+        
         public int item_id { get; set; }
-        public int list_id { get; set; }
-        public int category_id { get; set; }
 
+        [Display(Name ="List Name")]
+        public int list_id { get; set; }
+        [Display(Name ="Category")]
+        public int category_id { get; set; }
         [Display(Name =("Task Name"))]
         public string taskName { get; set; }
         [Display(Name ="Is Done")]
@@ -28,6 +31,7 @@ namespace WebApplication1.Models
         public System.DateTime lastChangedDate { get; set; }
     
         public virtual Category Category { get; set; }
+        [Display(Name ="To Do List")]
         public virtual TodoList TodoList { get; set; }
     }
 }
