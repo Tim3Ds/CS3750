@@ -20,7 +20,12 @@ namespace WebApplication1.Controllers
             var items = db.Items.Include(i => i.Category).Include(i => i.TodoList);
             return View(items.ToList());
         }
-
+        // GET: Items
+        public ActionResult ItemsHome()
+        {
+            var items = db.Items.Include(i => i.Category).Include(i => i.TodoList);
+            return View(items.ToList());
+        }
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {

@@ -19,6 +19,11 @@ namespace WebApplication1.Controllers
         {
             return View(db.TodoLists.ToList());
         }
+        // GET: TodoLists for home screen
+        public ActionResult ToDoHome()
+        {
+            return View(db.TodoLists.ToList());
+        }
 
         // GET: TodoLists/Details/5
         public ActionResult Details(int? id)

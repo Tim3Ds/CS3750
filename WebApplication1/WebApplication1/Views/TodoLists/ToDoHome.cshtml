@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WebApplication1.Models.TodoList>
+
+@{
+    ViewBag.Title = "ToDoHome";
+    Layout = "~/Views/Home/Index.cshtml";
+}
+@foreach (var item in Model)
+{
+    <h3>@Html.DisplayFor(modelItem => item.listName)</h3>
+    <div>
+        @RenderBody()
+    </div>
+}
+
