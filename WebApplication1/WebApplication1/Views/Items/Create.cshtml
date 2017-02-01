@@ -4,6 +4,42 @@
     ViewBag.Title = "Create";
 }
 
+@*https://www.codeproject.com/Articles/1097763/MVC-Autocomplete-Textbox-Using-Jquery*@
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    var textbox;
+    var selectValue;
+    $(function () {
+        textbox = $("#txtTask");
+        selectValue = $('ul#selectedValue');
+
+        textbox.on("input", function () {
+            getAutoComplete(textbox.val());
+        });
+    });
+    function getAutoComplete(taskName) {
+        var uri = "Items/GetTask";
+        $.getJSON(uri, { taskName: taskName })
+        .done(function (data) {
+            selectValue.html("");
+            var count = 0;
+            $.each(data, function (key, item) {
+                //$('<option>').text(item).appendTo('#selectedValue');
+                var li = $('<li/>').addClass('ui-menu-item').attr('role', 'menuitem')
+                    .html("<a href='#' onclick=\"setText('" + item + "')\">" + item + "</a>")
+                    .appendTo(selectValue);
+
+                count++;
+            });
+        });
+    }
+    function setText(text) {
+        textbox.val(text);
+        getAutoComplete(text);
+    }
+</script>
+
 <h2>Create</h2>
 
 
@@ -34,8 +70,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.taskName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+
                 @Html.EditorFor(model => model.taskName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.taskName, "", new { @class = "text-danger" })
+
+                @*<style>
+                    input[type="text"], select {
+                        width: 250px;
+                    }
+
+                    a:link, a:active, a:visited, a:hover {
+                        text-decoration: none;
+                        color: black;
+                    }
+                    /*--- DROPDOWN ---*/
+                    #nav ul {
+                        list-style: none;
+                        position: absolute;
+                        padding: 0;
+                        margin: 0;
+                        list-style-type: none;
+                    }
+                </style>*@
             </div>
         </div>
 
