@@ -4,29 +4,5 @@
     ViewBag.Title = "ItemsHome";
     Layout = "~/Views/TodoLists/ToDoHome.cshtml";
 }
-<p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.taskName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.isDone)
-            </th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.taskName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.isDone)
-                </td>
-            </tr>
-        }
-
-    </table>
-</p>
 

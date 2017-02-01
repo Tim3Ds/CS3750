@@ -1,5 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.Item>
-
+﻿
 @{
     ViewBag.Title = "Home Page";
 }
@@ -23,8 +22,17 @@
         </p>
     </div>
 </div>
+@model IEnumerable<WebApplication1.Models.Project1TodoEntities>
 <!-- Accordion -->
 <h2 class="ui-accordion">Accordion</h2>
 <div id="accordion">
-	@RenderBody();
+    
+    @foreach (var item in Model)
+    {
+    }
+	<h3>Header</h3>
+    <div>
+        <p>content<br />  </p>
+    </div>
+    
 </div>
