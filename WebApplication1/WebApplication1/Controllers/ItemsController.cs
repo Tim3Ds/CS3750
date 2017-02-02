@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,47 +20,6 @@ namespace WebApplication1.Controllers
             var items = db.Items.Include(i => i.Category).Include(i => i.TodoList);
             return View(items.ToList());
         }
-
-        public JsonResult GetTask(string taskName)
-        {
-            var cn = new SqlConnection();
-            var ds = new DataSet();
-            string strCn = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
-            cn.ConnectionString = strCn;
-            var cmd = new SqlCommand
-            {
-                Connection = cn,
-                CommandType = CommandType.Text,
-                CommandText = "SELECT taskName FROM dbo.Item WHERE taskName like @myParameter and taskName != @myParameter2"
-            };
-
-            cmd.Parameters.AddWithValue("@myParameter", "%" + taskName + "%");
-            cmd.Parameters.AddWithValue("@myParameter2", taskName);
-
-            try
-            {
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                var da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                cn.Close();
-            }
-            DataTable dt = ds.Tables[0];
-
-
-            var txtItems = (from DataRow row in dt.Rows
-                            select row["taskName"].ToString()
-                                into dbValues
-                            select dbValues.ToLower()).ToList();
-            return Json(txtItems, JsonRequestBehavior.AllowGet);
-        }
-
 
         // GET: Items/Details/5
         public ActionResult Details(int? id)
