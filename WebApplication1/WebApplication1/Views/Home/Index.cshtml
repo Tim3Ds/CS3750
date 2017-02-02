@@ -22,17 +22,48 @@
         </p>
     </div>
 </div>
-@model IEnumerable<WebApplication1.Models.Project1TodoEntities>
+
 <!-- Accordion -->
 <h2 class="ui-accordion">Accordion</h2>
 <div id="accordion">
-    
-    @foreach (var item in Model)
-    {
+    @using WebApplication1.Models;
+    @{
+        var db = new Project1TodoEntities();
+        var listItems = db.TodoLists;
+        var listModel = listItems.ToList();
+        foreach (var ListItem in listModel)
+        {
+            <h3>@ListItem.listName</h3>
+            var db2 = new Project1TodoEntities();
+            var itemsItem = db2.Items.Where(i => i.list_id == ListItem.list_id);
+            <div>
+                <p>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Task
+                            </th>
+                            <th>
+                                is Done
+                            </th>
+                        </tr>
+                        @foreach (var items in itemsItem)
+                {
+                            <tr>
+                                <td>
+                                    @items.taskName
+                                </td>
+                                <td>
+                                    @items.isDone
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+                </p>
+            </div>
+        }
     }
-	<h3>Header</h3>
-    <div>
-        <p>content<br />  </p>
-    </div>
-    
 </div>
+
