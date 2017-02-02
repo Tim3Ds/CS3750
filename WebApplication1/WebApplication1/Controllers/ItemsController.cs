@@ -35,8 +35,7 @@ namespace WebApplication1.Controllers
             }
 
         }
-       
-
+        
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
