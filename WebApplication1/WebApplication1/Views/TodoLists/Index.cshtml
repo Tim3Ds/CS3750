@@ -24,7 +24,8 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.listName)
+                @Html.ActionLink(item.listName, "Index", "Items", new { id = item.list_id }, null);
+                @*@Html.DisplayFor(modelItem => item.listName)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.lastChangedDate)
