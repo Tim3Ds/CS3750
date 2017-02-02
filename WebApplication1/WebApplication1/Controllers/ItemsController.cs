@@ -15,11 +15,27 @@ namespace WebApplication1.Controllers
         private Project1TodoEntities db = new Project1TodoEntities();
 
         // GET: Items
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var items = db.Items.Include(i => i.Category).Include(i => i.TodoList);
-            return View(items.ToList());
+            if(id == null)
+            {
+                id = 0;
+            }
+            List<Item> list = new List<Item>();
+            if (id == 0)
+            {
+                var items = db.Items.Include(i => i.Category).Include(i => i.TodoList);
+                return View(items.ToList());
+            }
+
+            using (var db = new Project1TodoEntities())
+            {
+                var items = db.Items.Include(i => i.Category).Include(i => i.TodoList).Where(i => i.list_id == id);
+                return View(items.ToList());
+            }
+
         }
+        
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
@@ -129,6 +145,19 @@ namespace WebApplication1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+      
+        //public ActionResult toDoToItems(int id)
+        //{
+        //    List<Item> select = new List<Item>();
+        //    using (var db = new Project1TodoEntities())
+        //    {
+        //        select = (from r in db.Items
+        //                  where r.list_id == id
+        //                  select r).ToList<Item>();
+        //    }
+        //    return RedirectToAction("Index", new { x = select});
+        //}
 
         protected override void Dispose(bool disposing)
         {
