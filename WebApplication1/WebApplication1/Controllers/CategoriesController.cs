@@ -48,14 +48,17 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "category_id,categoryName,lastChangedDate")] Category category)
         {
-            if (ModelState.IsValid)
+            using (var db = new Project1TodoEntities())
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    category.lastChangedDate = DateTime.Now;
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(category);
             }
-
-            return View(category);
         }
 
         // GET: Categories/Edit/5
@@ -109,9 +112,33 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            List<int> catId = new List<int>();
+            List<Item> items = new List<Item>();
+            using (var db = new Project1TodoEntities())
+            {
+                catId = (from r in db.Items
+                         where r.category_id == id
+                         select r.category_id).ToList<int>();
+
+                if(catId.Count == 0)
+                {
+                    Category category = db.Categories.Find(id);
+                    db.Categories.Remove(category);
+                }
+                else
+                {
+                    items = (from r in db.Items
+                             where r.category_id == id
+                             select r).ToList<Item>();
+
+                   foreach(var e in items)
+                    {
+                        db.Items.Remove(e);
+                    }
+                }
+               
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
