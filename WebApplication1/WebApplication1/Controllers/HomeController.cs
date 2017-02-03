@@ -26,6 +26,20 @@ namespace WebApplication1.Controllers
             
         }
 
-
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Item item = db.Items.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
+            ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
+            return View(item);
+        }
     }
 }
