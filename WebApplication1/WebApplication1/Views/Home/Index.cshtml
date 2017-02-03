@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
@@ -23,8 +22,6 @@
     </div>
 </div>
 
-<!-- Accordion -->
-<h2 class="ui-accordion">Your Lists</h2>
 <div id="accordion">
     @using WebApplication1.Models;
     @{
@@ -41,29 +38,26 @@
                     <table class="table">
                         <tr>
                             <th>
-                                Task
+                                Task Name
                             </th>
                             <th>
-                                is Done
+                                Is Done
                             </th>
                         </tr>
                         @foreach (var items in itemsItem)
-                {
+                        {
                             <tr>
                                 <td>
-                                    @items.taskName
+                                    @Html.DisplayFor(model => items.taskName)
                                 </td>
-                                <td>
-                                    @items.isDone
+                                <td >
+                                    @Html.DisplayFor(model => items.isDone)
                                 </td>
-
                             </tr>
                         }
-
                     </table>
                 </p>
             </div>
         }
     }
 </div>
-
