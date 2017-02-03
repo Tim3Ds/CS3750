@@ -259,8 +259,6 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
-    <Content Include="Views\TodoLists\ToDoHome.cshtml" />
-    <Content Include="Views\Items\ItemsHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
