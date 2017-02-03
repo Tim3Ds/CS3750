@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#jtleft {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    padding: 15px;
+}
+
+#jtright {
+    border: solid;
+    border-color: aqua;
+    background-color: brown;
+    float: right;
+    padding: 60px;
+}
