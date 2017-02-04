@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <div class="jumbotron">
@@ -53,6 +53,7 @@
                                 </td>
                                 <td >
                                     @Html.DisplayFor(model => items.isDone)
+                                    @Html.ActionLink("Edit", "Edit", new { id = items.item_id })
                                 </td>
                             </tr>
                         }

@@ -35,35 +35,7 @@ namespace WebApplication1.Controllers
             }
 
         }
-
-        // POST: Items/Edit
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(List<Item> item)
-        {
-            using (var db = new Project1TodoEntities())
-            {
-                if (item != null)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        foreach (var id in item)
-                        {
-                            Item itemDB = db.Items.Find(id.item_id);
-                            if (itemDB != null)
-                            {
-                                itemDB.lastChangedDate = DateTime.Now;
-                                itemDB.isDone = id.isDone;
-                            }
-                        }
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-        }
-
+        
         // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
