@@ -315,8 +315,9 @@ html {
 
 .line-separator{
     height:1px;
-    background:#717171;
-    border-bottom:1px solid #313030;
+    border-bottom:1px solid white;
+    background-color: white;
+    color: white;
 }
 
 body {
@@ -7941,6 +7942,7 @@ body {
   color: #888888;
   background-color: #060606;
 }
+
 input,
 button,
 select,
