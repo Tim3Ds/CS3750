@@ -41,5 +41,27 @@ namespace WebApplication1.Controllers
             ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
             return View(item);
         }
+
+        // POST: Items/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Item item)
+        {
+            using (var db = new Project1TodoEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    item.lastChangedDate = DateTime.Now;
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.category_id = new SelectList(db.Categories, "category_id", "categoryName", item.category_id);
+                ViewBag.list_id = new SelectList(db.TodoLists, "list_id", "listName", item.list_id);
+                return View(item);
+            }
+        }
     }
 }
