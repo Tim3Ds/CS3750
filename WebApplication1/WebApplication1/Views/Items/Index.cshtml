@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.Item>
+﻿@model List<WebApplication1.Models.Item>
 
 @{
     ViewBag.Title = "Index";
@@ -9,50 +9,60 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.taskName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastChangedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.categoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TodoList.listName)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm("Index", "Items"))
+{
+    @Html.AntiForgeryToken()
 
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.taskName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isDone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lastChangedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.categoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TodoList.listName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.item_id }) |
-                @*@Html.ActionLink("Details", "Details", new { id = item.item_id }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.item_id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].taskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].isDone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].lastChangedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].Category.categoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model[0].TodoList.listName)
+            </th>
+            <th></th>
         </tr>
-    }
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem[i].taskName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => modelItem[i].item_id)
+                    @Html.CheckBoxFor(modelItem => modelItem[i].isDone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem[i].lastChangedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem[i].Category.categoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem[i].TodoList.listName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model[i].item_id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.item_id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = Model[i].item_id })
+                </td>
+            </tr>
+        }
+    </table>
 
-</table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+}
